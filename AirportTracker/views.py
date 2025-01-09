@@ -22,7 +22,7 @@ def search_flight(request):
         return JsonResponse({'error': 'Flight ID is required'}, status=400)
 
     flight_url = f"https://api.magicapi.dev/api/v1/aedbx/aerodatabox/flights/Number/{flight_id}?withAircraftImage=true&withLocation=false"
-    headers = {'x-magicapi-key': 'cm35z0y7q0001l803rkcl3wiu'}
+    headers = {'x-magicapi-key': 'cm5ppmxs30001js032fsnet77'} #apikey update
 
     flight_response = requests.get(flight_url, headers=headers)
     if flight_response.status_code == 204:
