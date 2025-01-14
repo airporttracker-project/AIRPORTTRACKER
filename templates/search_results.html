@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Details</title>
+</head>
+<body>
+    <header>
+        <h1>Flight Details</h1>
+    </header>
+
+    <main>
+        {% if flight_data %}
+        <ul>
+            <li><strong>Flight Number:</strong> {{ flight_data.number }}</li>
+            <li><strong>Departure Airport:</strong> {{ flight_data.departure.airport.name }}</li>
+            <li><strong>Arrival Airport:</strong> {{ flight_data.arrival.airport.name }}</li>
+            <li><strong>Scheduled Time:</strong> {{ flight_data.scheduledTime.local }}</li>
+            <li><strong>Aircraft Model:</strong> {{ flight_data.aircraft.model }}</li>
+        </ul>
+        {% else %}
+        <p>No flight data available.</p>
+        {% endif %}
+        <a href="/">Back to Search</a>
+    </main>
+</body>
+</html>
