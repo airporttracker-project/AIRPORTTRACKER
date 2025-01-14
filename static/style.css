@@ -1,60 +1,92 @@
+/* Genel Stil */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f3f3f3;
+    color: #333;
+    line-height: 1.6;
 }
 
-#menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #007bff;
-}
-
-#menu a {
+/* Header */
+.header-container {
+    background: #004080;
     color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin-right: 1rem;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-#box {
-    margin: 2rem auto;
-    padding: 2rem;
-    background: white;
+h1 {
+    font-size: 2.5rem;
+}
+
+/* Form Stil */
+.container {
     max-width: 600px;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
-#search-input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"], button {
+    padding: 10px;
     border-radius: 5px;
+    border: 1px solid #ddd;
 }
 
-#search-btn {
-    padding: 0.5rem 2rem;
-    background-color: #007bff;
+button {
+    background: #004080;
     color: white;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
+    transition: background 0.3s;
 }
 
-#search-btn:hover {
-    background-color: #0056b3;
+button:hover {
+    background: #0066cc;
 }
 
-footer {
+/* Uçuş Bilgileri Kartı */
+.flight-card {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    background: white;
+}
+
+.flight-header {
     text-align: center;
-    padding: 1rem;
-    background: #007bff;
-    color: white;
-    margin-top: 2rem;
+    margin-bottom: 20px;
+}
+
+.flight-info {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.departure, .arrival {
+    text-align: center;
+}
+
+.status {
+    color: green;
+    font-weight: bold;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #004080;
+    font-weight: bold;
 }
