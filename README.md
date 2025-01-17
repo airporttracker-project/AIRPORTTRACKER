@@ -117,7 +117,7 @@ AIRPORTTRACKER/
 ---
 
 ## Contributors
-- Caner Akçasu
+- Caner Akcasu
 - Friends and collaborators
 
 ---
