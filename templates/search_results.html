@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>✈️ Flight Details</h1>
+        </div>
+    </header>
+
+    <main class="container flight-details">
+        {% if flight_data %}
+        <div class="flight-card">
+            <div class="flight-header">
+                <h2>{{ flight_data.number }} - {{ flight_data.aircraft.model }}</h2>
+                <p>Status: <span class="status">On Time</span></p>
+            </div>
+            <div class="flight-info">
+                <div class="departure">
+                    <h3>Departure</h3>
+                    <p><strong>Airport:</strong> {{ flight_data.departure.airport.name }}</p>
+                    <p><strong>Time:</strong> {{ flight_data.scheduledTime.local }}</p>
+                </div>
+                <div class="arrival">
+                    <h3>Arrival</h3>
+                    <p><strong>Airport:</strong> {{ flight_data.arrival.airport.name }}</p>
+                    <p><strong>Estimated Time:</strong> {{ flight_data.scheduledTime.local }}</p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p>No flight data available.</p>
+        {% endif %}
+        <a class="back-button" href="/">🔙 Back to Search</a>
+    </main>
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

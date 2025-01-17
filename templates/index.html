@@ -1,44 +1,31 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'style.css' %}">
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KnowYourFlight</title>
+    <title>Flight Tracker</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     <header>
-        <div id="menu">
-            <div id="logo">
-                <a href="/">
-                    <img src="{% static 'logo.jpg' %}" alt="KnowYourFlight Logo">
-                </a>
-            </div>
-            <nav id="navbar">
-                <a class="title" href="/">Home</a>
-                <a class="title" href="/about">About</a>
-                <a class="title" href="https://github.com/yourgithubrepo" target="_blank">GitHub</a>
-            </nav>
+        <div class="header-container">
+            <h1>✈️ Flight Tracker</h1>
         </div>
     </header>
 
-    <main>
-        <div id="box">
-            <h1 id="search-text">Search for your flight and get all the details</h1>
-            <form action="/search" method="get">
-                <input type="text" id="search-input" name="flight" placeholder="Example: LA8180">
-                <button id="search-btn" type="submit">Search</button>
-            </form>
-        </div>
+    <main class="container">
+        <form action="/search/" method="get" class="search-form">
+            <label for="flight">Enter Flight ID:</label>
+            <input type="text" id="flight" name="flight" placeholder="Example: THY533" required>
+            <button type="submit">Search</button>
+        </form>
+        
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
     </main>
 
-    <footer>
-        <p>Powered by KnowYourFlight API</p>
-    </footer>
+    <script src="{% static 'script.js' %}"></script>
 </body>
 </html>
-
