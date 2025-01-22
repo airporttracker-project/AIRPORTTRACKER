@@ -118,7 +118,7 @@ AIRPORTTRACKER/
 
 ## Contributors
 - Caner Akçasu
-- Friends and collaborators
+- Kaan Yazicioglu
 
 ---
 
