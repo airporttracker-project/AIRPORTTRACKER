@@ -51,7 +51,7 @@
                 <div class="flight-info">
                     <div class="departure">
                         <h3>Departure</h3>
-                        <p><strong>Airport:</strong> {{ flight.departure.airport.name }}</p>
+                        <p><strong>Airport:</strong> {{ flight.departure.airport.name }} ({{ flight.departure.airport.icao }})</p>
                         <p><strong>Time (Local):</strong>
                             {% if flight.departure.scheduledTime.local %}
                                 {{ flight.departure.scheduledTime.local }}
@@ -62,7 +62,7 @@
                     </div>
                     <div class="arrival">
                         <h3>Arrival</h3>
-                        <p><strong>Airport:</strong> {{ flight.arrival.airport.name }}</p>
+                        <p><strong>Airport:</strong> {{ flight.arrival.airport.name }} ({{ flight.arrival.airport.icao }})</p>
                         <p><strong>Time (Local):</strong>
                             {% if flight.arrival.scheduledTime.local %}
                                 {{ flight.arrival.scheduledTime.local }}

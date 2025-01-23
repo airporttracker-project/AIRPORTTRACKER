@@ -1,13 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Flight Tracker</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        /* Arka planı kaplayacak bir iframe konteynerı */
+        .map-background {
+            position: fixed;
+            top: 0; 
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* iframe geride kalsın */
+            overflow: hidden;
+        }
+        .map-background iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Konteyneri sayfa ortasına yerleştirmek */
+        .container {
+            position: relative;
+            z-index: 1; /* iframe'in üstünde görünsün */
+            max-width: 600px;
+            margin: 100px auto 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85); /* Hafif şeffaf */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Header biraz daha modern görünmesi için */
+        .header-container {
+            background: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .header-container h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        /* Form stilleri (varsa style.css içerisindekiyle birleştirin) */
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .search-form label {
+            font-weight: bold;
+        }
+        .search-form input[type="text"],
+        .search-form button {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .search-form button {
+            background: #004080;
+            color: white;
+            cursor: pointer;
+        }
+        .search-form button:hover {
+            background: #0066cc;
+        }
+
+        .error {
+            color: red;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+    <!-- Arka planda Flightradar24 iframe (örnek link) -->
+    <div class="map-background">
+        <!-- Örnek: Flightradar24 üzerinde bir koordinata/düzeye ait link 
+             Not: Gerçekte embedding engellenebilir, test etmek gerekir. -->
+        <iframe 
+            src="https://www.flightradar24.com/40.98,28.78/6" 
+            allowfullscreen 
+            loading="lazy">
+        </iframe>
+    </div>
+
     <header>
         <div class="header-container">
             <h1>✈️ Flight Tracker</h1>
@@ -15,7 +98,7 @@
     </header>
 
     <main class="container">
-        <form action="/search/" method="get" class="search-form">
+        <form action="/search/" method="get" class="search-form" id="flightForm">
             <label for="flight">Enter Flight ID:</label>
             <input type="text" id="flight" name="flight" placeholder="Example: THY533" required>
             <button type="submit">Search</button>

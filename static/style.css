@@ -1,92 +1,189 @@
+/* Google Fonts Kullanımı (Rubik) */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
+
+/* Basit fade-in animasyonu */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Genel Stil */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f3f3f3;
-    color: #333;
-    line-height: 1.6;
+  font-family: 'Rubik', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1a; /* Daha koyu arka plan */
+  color: #ececec;
+  line-height: 1.5;
 }
 
 /* Header */
 .header-container {
-    background: #004080;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background: #004080;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  position: relative;
 }
 
-h1 {
-    font-size: 2.5rem;
+.header-container h1 {
+  font-size: 2rem;
+  margin: 0;
 }
 
-/* Form Stil */
+/* Konteyner */
 .container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #2a2a2a;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+  animation: fadeIn 0.5s ease forwards;
 }
 
+/* Arama Formu */
 .search-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.search-form label {
+  font-weight: 600;
 }
 
 input[type="text"], button {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  font-size: 1rem;
+}
+
+input[type="text"] {
+  background: #1f1f1f;
+  color: #ccc;
+}
+
+input[type="text"]::placeholder {
+  color: #666;
 }
 
 button {
-    background: #004080;
-    color: white;
-    cursor: pointer;
-    transition: background 0.3s;
+  background: #004080;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s, transform 0.3s;
 }
 
 button:hover {
-    background: #0066cc;
+  background: #0066cc;
+  transform: scale(1.02);
 }
 
 /* Uçuş Bilgileri Kartı */
 .flight-card {
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    background: white;
+  padding: 20px;
+  border-radius: 10px;
+  background: #333;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  opacity: 0; 
+  transform: translateY(10px);
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: 0.3s; /* Biraz gecikme verelim */
 }
 
 .flight-header {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.flight-header h2 {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.flight-subinfo {
+  font-size: 0.85rem;
+  color: #bbb;
 }
 
 .flight-info {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
 }
 
 .departure, .arrival {
-    text-align: center;
+  text-align: center;
 }
 
 .status {
-    color: green;
-    font-weight: bold;
+  color: #60d394;
+  font-weight: bold;
 }
 
 .back-button {
-    display: inline-block;
-    margin-top: 20px;
-    text-align: center;
-    text-decoration: none;
-    color: #004080;
-    font-weight: bold;
+  display: inline-block;
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #60a9ff;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.back-button:hover {
+  color: #90d4ff;
+}
+
+/* Completion Bar ve Label */
+.completion-bar-container {
+  text-align: center;
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.completion-bar-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+progress {
+  width: 70%;
+  height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #555;
+  border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+  background-color: #60a9ff;
+  border-radius: 10px;
+}
+
+progress::-moz-progress-bar {
+  background-color: #60a9ff;
+  border-radius: 10px;
+}
+
+.time-remaining {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #aaa;
 }
