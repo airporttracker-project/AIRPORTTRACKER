@@ -6,36 +6,90 @@
     <title>Flight Details</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        .completion-bar-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .flight-subinfo {
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="header-container">
-            <h1>✈️ Flight Details</h1>
+            <!-- flight listesindeki ilk uçuşun callSign'ini başlıkta gösterelim -->
+            {% if flights %}
+                {% with first_flight=flights.0 %}
+                    <h1>✈️ Flight Details of {{ first_flight.callSign }}</h1>
+                {% endwith %}
+            {% else %}
+                <h1>✈️ Flight Details (By CallSign)</h1>
+            {% endif %}
         </div>
     </header>
 
     <main class="container flight-details">
-        {% if flight_data %}
-        <div class="flight-card">
-            <div class="flight-header">
-                <h2>{{ flight_data.number }} - {{ flight_data.aircraft.model }}</h2>
-                <p>Status: <span class="status">On Time</span></p>
-            </div>
-            <div class="flight-info">
-                <div class="departure">
-                    <h3>Departure</h3>
-                    <p><strong>Airport:</strong> {{ flight_data.departure.airport.name }}</p>
-                    <p><strong>Time:</strong> {{ flight_data.scheduledTime.local }}</p>
+        {% if flights %}
+            {% for flight in flights %}
+            <div class="flight-card">
+                <div class="flight-header">
+                    <h2>
+                        {{ flight.number }} - {{ flight.aircraft.model }}
+                        <br>
+                        <small class="flight-subinfo">
+                            (Operated by {{ flight.airline.name }})
+                        </small>
+                    </h2>
+                    <p>
+                        Status: <span class="status">{{ flight.status }}</span>
+                    </p>
                 </div>
-                <div class="arrival">
-                    <h3>Arrival</h3>
-                    <p><strong>Airport:</strong> {{ flight_data.arrival.airport.name }}</p>
-                    <p><strong>Estimated Time:</strong> {{ flight_data.scheduledTime.local }}</p>
+
+                <div class="flight-info">
+                    <div class="departure">
+                        <h3>Departure</h3>
+                        <p><strong>Airport:</strong> {{ flight.departure.airport.name }}</p>
+                        <p><strong>Time (Local):</strong>
+                            {% if flight.departure.scheduledTime.local %}
+                                {{ flight.departure.scheduledTime.local }}
+                            {% else %}
+                                Unknown
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="arrival">
+                        <h3>Arrival</h3>
+                        <p><strong>Airport:</strong> {{ flight.arrival.airport.name }}</p>
+                        <p><strong>Time (Local):</strong>
+                            {% if flight.arrival.scheduledTime.local %}
+                                {{ flight.arrival.scheduledTime.local }}
+                            {% elif flight.arrival.predictedTime.local %}
+                                {{ flight.arrival.predictedTime.local }}
+                            {% else %}
+                                Unknown
+                            {% endif %}
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+            {% endfor %}
+
+            <!-- Progress bar + kalan süre (ilk uçuş üzerinden örnek) -->
+            <div class="completion-bar-container">
+                {% with first_flight=flights.0 %}
+                    <label>Flight Completion: {{ first_flight.completionPercent }}%</label><br>
+                    <progress value="{{ first_flight.completionPercent }}" max="100">
+                        {{ first_flight.completionPercent }}%
+                    </progress>
+                    <br>
+                    <p>Time Remaining for the departure: {{ first_flight.timeRemaining }}</p>
+                {% endwith %}
+            </div>
         {% else %}
-        <p>No flight data available.</p>
+            <p>No flight data available.</p>
         {% endif %}
         <a class="back-button" href="/">🔙 Back to Search</a>
     </main>
