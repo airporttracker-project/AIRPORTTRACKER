@@ -117,8 +117,8 @@ AIRPORTTRACKER/
 ---
 
 ## Contributors
-- Caner Akçasu
-- Kaan Yazicioglu
+- Caner Akçasu (SD1)
+- Kaan Yazicioglu (SD4)
 
 ---
 

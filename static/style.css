@@ -1,7 +1,7 @@
-/* Google Fonts Kullanımı (Rubik) */
+/* Google Fonts Kullanımı (Rubik) 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
 
-/* Basit fade-in animasyonu */
+/* Basit fade-in animasyonu 
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -13,17 +13,17 @@
   }
 }
 
-/* Genel Stil */
+/* Genel Stil 
 body {
   font-family: 'Rubik', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #1a1a1a; /* Daha koyu arka plan */
+  background-color: #1a1a1a; /* Daha koyu arka plan 
   color: #ececec;
   line-height: 1.5;
 }
 
-/* Header */
+/* Header 
 .header-container {
   background: #004080;
   color: white;
@@ -38,7 +38,7 @@ body {
   margin: 0;
 }
 
-/* Konteyner */
+/* Konteyner 
 .container {
   max-width: 600px;
   margin: 40px auto;
@@ -49,7 +49,7 @@ body {
   animation: fadeIn 0.5s ease forwards;
 }
 
-/* Arama Formu */
+/* Arama Formu 
 .search-form {
   display: flex;
   flex-direction: column;
@@ -89,7 +89,7 @@ button:hover {
   transform: scale(1.02);
 }
 
-/* Uçuş Bilgileri Kartı */
+/* Uçuş Bilgileri Kartı 
 .flight-card {
   padding: 20px;
   border-radius: 10px;
@@ -99,7 +99,7 @@ button:hover {
   opacity: 0; 
   transform: translateY(10px);
   animation: fadeIn 0.5s ease forwards;
-  animation-delay: 0.3s; /* Biraz gecikme verelim */
+  animation-delay: 0.3s; /* Biraz gecikme verelim 
 }
 
 .flight-header {
@@ -146,7 +146,7 @@ button:hover {
   color: #90d4ff;
 }
 
-/* Completion Bar ve Label */
+/* Completion Bar ve Label 
 .completion-bar-container {
   text-align: center;
   margin-top: 20px;
@@ -187,3 +187,5 @@ progress::-moz-progress-bar {
   font-size: 0.95rem;
   color: #aaa;
 }
+
+*/

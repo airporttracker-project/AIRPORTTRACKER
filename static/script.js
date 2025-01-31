@@ -1,41 +1,50 @@
-// Form validasyonu ve animasyon
 const flightForm = document.getElementById('flightForm');
 const flightInput = document.getElementById('flight');
 
-// Geçmiş aramalar için bir konteyner oluştur ve sayfaya ekle
-const historyContainer = document.createElement("div");
-historyContainer.innerHTML = "<h3>Previous Searches:</h3><ul id='searchHistory'></ul>";
-document.querySelector(".container").appendChild(historyContainer);
-
-const searchHistoryList = document.getElementById("searchHistory");
-
-// LocalStorage'dan geçmiş aramaları al
+// Geçmiş aramaları yükle
 function loadSearchHistory() {
     let searches = JSON.parse(localStorage.getItem("flightSearches")) || [];
+    const searchHistoryList = document.getElementById("searchHistory");
+    
     searchHistoryList.innerHTML = "";
     searches.forEach(flight => {
         let li = document.createElement("li");
-        li.innerHTML = `<a href='/search/?flight=${flight}'>${flight}</a>`;
+        li.innerHTML = `<a href='/search/?flight=${flight}' class="search-link">${flight}</a>`;
         searchHistoryList.appendChild(li);
     });
 }
 
-// Form gönderildiğinde uçuş ID'sini kaydet
+// Form gönderim işlemi
 flightForm.addEventListener('submit', function(event) {
     if (flightInput.value.trim() === '') {
-        alert('Please enter a valid flight ID.');
-        event.preventDefault(); // Formun gönderilmesini engeller
-    } else {
-        let flightID = flightInput.value.trim().toUpperCase();
-        let searches = JSON.parse(localStorage.getItem("flightSearches")) || [];
-        if (!searches.includes(flightID)) {
-            searches.unshift(flightID); // Yeni aramayı başa ekle
-            if (searches.length > 5) searches.pop(); // En fazla 5 arama sakla
-            localStorage.setItem("flightSearches", JSON.stringify(searches));
-        }
-        alert(`Searching for flight: ${flightInput.value}`);
+        event.preventDefault();
+        return;
+    }
+    
+    const flightID = flightInput.value.trim().toUpperCase();
+    let searches = JSON.parse(localStorage.getItem("flightSearches")) || [];
+    
+    if (!searches.includes(flightID)) {
+        searches.unshift(flightID);
+        if (searches.length > 5) searches.pop();
+        localStorage.setItem("flightSearches", JSON.stringify(searches));
+        loadSearchHistory();
     }
 });
 
-// Sayfa yüklendiğinde geçmiş aramaları göster
-document.addEventListener("DOMContentLoaded", loadSearchHistory);
+// Sayfa yüklendiğinde geçmişi göster
+document.addEventListener("DOMContentLoaded", () => {
+    loadSearchHistory();
+    
+    // (İsteğe bağlı) Tekrar aynı container eklemeyi önlemek için istersek burayı kaldırabiliriz.
+    // Burada ekstra history-container eklemeye gerek yoksa yoruma alınabilir:
+    /*
+    const historyContainer = document.createElement("div");
+    historyContainer.className = "history-container";
+    historyContainer.innerHTML = `
+        <h4>Recent Searches</h4>
+        <ul id="searchHistory"></ul>
+    `;
+    document.querySelector(".container").appendChild(historyContainer);
+    */
+});
